@@ -1,4 +1,3 @@
-// 
 PImage inicio ;
 PImage instrucciones ;
 PImage creditos;
@@ -82,9 +81,6 @@ void draw() {
 }
 
 
-// rect( 300,320,200,80); medida del boton
-
-
 
 void mouseClicked() {
   if ( estado.equals("inicio") && mouseX >= 300 &&  mouseY >= 320 &&  mouseX <= 300+200 &&  mouseY <= 320+80);
@@ -93,6 +89,7 @@ void mouseClicked() {
   }
 }
 void keyPressed() {
+  reinicio();
   if (key =='w' ) {
     luffyY-= 50;
     puntaje+=5;
@@ -109,18 +106,7 @@ void keyPressed() {
   if (key == 'r' ) {
     estado = "juego";
   }
-  if (key == 'i' ) {
-    estado = "inicio";
-      Auto= 0;
-  Auto2= -240;
-  Auto3= -410;
-  AutoD= 540;
-  AutoD2= 810;
-  AutoD3= 1000;
-  luffyX= 400;
-  luffyY= 500;
-  puntaje =0;
-  }
+  
   if (key == 't' ) {
     estado = "creditos";
     image (creditos, 0, 0);
