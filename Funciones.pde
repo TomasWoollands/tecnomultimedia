@@ -1,6 +1,6 @@
 void autos() {
-//AUTOS ARRIBA
- image(autoArriba [0], Auto++, 350 );
+  //AUTOS ARRIBA
+  image(autoArriba [0], Auto++, 350 );
   if (cont >= 50) {
     image(autoArriba [1], Auto2++, 350 );
     if (cont >= 100 ) {
@@ -56,5 +56,18 @@ void choque() {
     estado="perder";
   } else if (dist(luffyX, luffyY, Auto3++, 350) <= m) {
     estado="perder";
+  }
+}
+void reinicio(){if (key == 'i' ) {
+    estado = "inicio";
+      Auto= 0;
+  Auto2= -240;
+  Auto3= -410;
+  AutoD= 540;
+  AutoD2= 810;
+  AutoD3= 1000;
+  luffyX= 400;
+  luffyY= 500;
+  puntaje =0;
   }
 }
