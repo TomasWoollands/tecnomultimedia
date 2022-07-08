@@ -1,11 +1,11 @@
 void autos() {
-  //AUTOS IZ
+  //AUTOS ARRIBA
 
-  image(autoiz [0], PAuto++, 350 );
+  image(autoArriba [0], PAuto++, 350 );
   if (cont >= 50) {
-    image(autoiz [1], PAuto2++, 350 );
+    image(autoArriba [1], PAuto2++, 350 );
     if (cont >= 100 ) {
-      image(autoiz [2], PAuto3++, 350 );
+      image(autoArriba [2], PAuto3++, 350 );
     }
     if (PAuto> 800) {
       PAuto= 0;
@@ -16,12 +16,12 @@ void autos() {
     if (PAuto3> 800) {
       PAuto3= -300;
     }
-    //AUTOS DER
-    image(autode [0], PAutoD--, 200 );
+    //AUTOS ABAJO
+    image(autoAbajo [0], PAutoD--, 200 );
     if (cont >= 50 ) {
-      image(autode [1], PAutoD2--, 200 );
+      image(autoAbajo [1], PAutoD2--, 200 );
       if (cont >= 100 ) {
-        image(autode [2], PAutoD3--, 200 );
+        image(autoAbajo [2], PAutoD3--, 200 );
       }
     }
   }
@@ -38,41 +38,41 @@ void autos() {
 }
 
 void puntos(int x, int y, int t) {
-  textFont(berlin);
+  textFont(kratos);
   textSize(t);
   fill(2, 15, 234);
-  text( "Puntaje:" +puntos, x, y);
+  text( "Puntaje:" +puntaje, x, y);
 }
-void peces() {
-  image(pez [0], PezX, 100 );
-  image(pez [1], PezX *2, 150 );
-  image(pez [2], PezX+10, 70 );
-  image(pez [3], PezX *2, 100 );
-  image(pez [4], PezX-30, 150 );
-  if (dist(PPatoX, PPatoY, PezX, 100) <= r) {
-    puntos+=30;
-  } else if (dist(PPatoX, PPatoY, PezX *2, 150) <= r) {
-    puntos+=30;
-  } else if (dist(PPatoX, PPatoY, PezX+10, 70) <= r) {
-    puntos+=30;
-  } else if (dist(PPatoX, PPatoY, PezX *2, 100) <= r) {
-    puntos+=30;
-  } else if (dist(PPatoX, PPatoY, PezX-30, 150 ) <= r) {
-    puntos+=30;
+void cofres() {
+  image(cofre [0], tesoroX, 100 );
+  image(cofre [1], tesoroX *2, 150 );
+  image(cofre [2], tesoroX+10, 70 );
+  image(cofre [3], tesoroX *2, 100 );
+  image(cofre [4], tesoroX-30, 150 );
+  if (dist(luffyX,luffyY, tesoroX, 100) <= m) {
+    puntaje+=30;
+  } else if (dist(luffyX, luffyY, tesoroX *2, 150) <= m) {
+    puntaje+=30;
+  } else if (dist(luffyX, luffyY, tesoroX+10, 70) <= m) {
+    puntaje+=30;
+  } else if (dist(luffyX, luffyY, tesoroX *2, 100) <= m) {
+    puntaje+=30;
+  } else if (dist(luffyX, luffyY, tesoroX-30, 150 ) <= m) {
+    puntaje+=30;
   }
 }
-void colision() {
-  if (dist(PPatoX, PPatoY, PAutoD--, 200) <= 60) {
-    estado="perdiste";
-  } else if (dist(PPatoX, PPatoY, PAutoD2--, 200) <= r) {
-    estado="perdiste";
-  } else if (dist(PPatoX, PPatoY, PAutoD3--, 200) <= r) {
-    estado="perdiste";
-  } else if (dist(PPatoX, PPatoY, PAuto++, 350) <= r) {
-    estado="perdiste";
-  } else if (dist(PPatoX, PPatoY, PAuto2++, 350) <= r) {
-    estado="perdiste";
-  } else if (dist(PPatoX, PPatoY, PAuto3++, 350) <= r) {
-    estado="perdiste";
+void choque() {
+  if (dist(luffyX, luffyY, PAutoD--, 200) <= 60) {
+    estado="perder";
+  } else if (dist(luffyX, luffyY, PAutoD2--, 200) <= m) {
+    estado="perder";
+  } else if (dist(luffyX, luffyY, PAutoD3--, 200) <= m) {
+    estado="perder";
+  } else if (dist(luffyX, luffyY, PAuto++, 350) <= m) {
+    estado="perder";
+  } else if (dist(luffyX, luffyY, PAuto2++, 350) <= m) {
+    estado="perder";
+  } else if (dist(luffyX, luffyY, PAuto3++, 350) <= m) {
+    estado="perder";
   }
 }
