@@ -1,4 +1,3 @@
-
 // 
 PImage inicio ;
 PImage instrucciones ;
@@ -9,29 +8,24 @@ PImage ganar ;
 PImage perder ;
 PFont kratos;
 String estado;
-int PAuto, PAuto2, PAuto3, luffyX, luffyY, puntaje, PAutoD, PAutoD2, PAutoD3, cont, m ;
+int Auto, Auto2, Auto3, luffyX, luffyY, puntaje, AutoD, AutoD2, AutoD3, cont, m ;
 float  tesoroX;
-;
 PImage[] autoArriba = new PImage[3];
 PImage[] autoAbajo = new PImage[3];
-PImage[] cofre = new PImage[5];
 void setup() {
   size(800, 600);
-  PAuto= 0;
-  PAuto2= -250;
-  PAuto3= -400;
-  PAutoD= 550;
-  PAutoD2= 800;
-  PAutoD3= 1000;
-  luffyX= 400;
-  luffyY= 500;
+  Auto= 0;
+  Auto2= -240;
+  Auto3= -410;
+  AutoD= 530;
+  AutoD2= 810;
+  AutoD3= 1000;
   puntaje =0;
+  luffyX= 400;
+  luffyY= 500; 
   cont=0;
   m=60;
-
-
-  tesoroX= random (800); 
-
+   
   luffy = loadImage("luffy.png");
   inicio = loadImage("inicio1.png");
   estado = "inicio";
@@ -41,15 +35,14 @@ void setup() {
   perder = loadImage("perder.png");
   creditos = loadImage("creditos.png");
   kratos = createFont("godofwar.ttf",50);
+  tesoroX= random (700);
   for ( int i = 0; i < autoAbajo.length; i++ ) {
-    autoAbajo[i] = loadImage( "autode"+i+".png" );
+    autoAbajo[i] = loadImage( "autoAbajo"+i+".png" );
   }
   for ( int i = 0; i < autoArriba.length; i++ ) {
-    autoArriba[i] = loadImage( "autoiz"+i+".png" );
+    autoArriba[i] = loadImage( "autoArriba"+i+".png" );
   }
-  for ( int i = 0; i < cofre.length; i++ ) {
-    cofre[i] = loadImage( "cofre"+i+".png" );
-  }
+ 
 }
 
 void draw() {
@@ -63,20 +56,19 @@ void draw() {
      fill(255,4,4);
      textFont(kratos);
      textSize(25);
-     text("Ayuda a Luffy a volver con sus amigos.Para\n hacerlo evita los autos mientras cruces\n la calle y junta tesoros del lago para sumar \n mas puntos. ",110,200);
+     text("Ayuda a Luffy a volver con sus amigos.Para\n hacerlo evita los autos mientras cruces\n la calle. ",30,200);
      
     // JUEGO
   } else if ( estado.equals("juego") ) {
     cont++;
     image (fondo, 0, 0);
     autos();
-    puntos(  600, 50, 30);
-    cofres();
+    puntos(90, 580, 30);   
     choque();
     //luffy
     image (luffy, luffyX, luffyY);
   }
-  if ( estado.equals("juego") && luffyY< 50 ) {
+  if ( estado.equals("juego") && luffyY< 150 ) {
     estado.equals("ganaste");
     image (ganar, 0, 0);
     puntos(  435, 330, 45);
@@ -119,12 +111,12 @@ void keyPressed() {
   }
   if (key == 'i' ) {
     estado = "inicio";
-      PAuto= 0;
-  PAuto2= -250;
-  PAuto3= -400;
-  PAutoD= 550;
-  PAutoD2= 800;
-  PAutoD3= 1000;
+      Auto= 0;
+  Auto2= -240;
+  Auto3= -410;
+  AutoD= 540;
+  AutoD2= 810;
+  AutoD3= 1000;
   luffyX= 400;
   luffyY= 500;
   puntaje =0;
