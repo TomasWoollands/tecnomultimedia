@@ -1,3 +1,5 @@
+void autos() {
+//AUTOS ARRIBA
  image(autoArriba [0], Auto++, 350 );
   if (cont >= 50) {
     image(autoArriba [1], Auto2++, 350 );
