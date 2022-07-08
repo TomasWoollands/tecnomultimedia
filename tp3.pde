@@ -1,13 +1,20 @@
 
-PImage inicio, instrucciones, fondo, luffy, ganaste, perdiste, creditos;
-PFont berlin;
+// 
+PImage inicio ;
+PImage instrucciones ;
+PImage creditos;
+PImage luffy ;
+PImage fondo ;
+PImage ganar ;
+PImage perder ;
+PFont kratos;
 String estado;
-int PAuto, PAuto2, PAuto3, PPatoX, PPatoY, puntos, PAutoD, PAutoD2, PAutoD3, cont, r ;
-float  PezX;
+int PAuto, PAuto2, PAuto3, luffyX, luffyY, puntaje, PAutoD, PAutoD2, PAutoD3, cont, m ;
+float  tesoroX;
 ;
-PImage[] autoiz = new PImage[3];
-PImage[] autode = new PImage[3];
-PImage[] pez = new PImage[5];
+PImage[] autoArriba = new PImage[3];
+PImage[] autoAbajo = new PImage[3];
+PImage[] cofre = new PImage[5];
 void setup() {
   size(800, 600);
   PAuto= 0;
@@ -16,36 +23,37 @@ void setup() {
   PAutoD= 550;
   PAutoD2= 800;
   PAutoD3= 1000;
-  PPatoX= 400;
-  PPatoY= 500;
-  puntos =0;
+  luffyX= 400;
+  luffyY= 500;
+  puntaje =0;
   cont=0;
-  r=60;
+  m=60;
 
 
-  PezX= random (800); 
+  tesoroX= random (800); 
 
   luffy = loadImage("luffy.png");
   inicio = loadImage("inicio1.png");
   estado = "inicio";
   instrucciones = loadImage("instrucciones.png");
   fondo = loadImage("fondo.png");
-  ganaste = loadImage("ganaste.png");
-  perdiste = loadImage("perdiste.png");
+  ganar = loadImage("ganar.png");
+  perder = loadImage("perder.png");
   creditos = loadImage("creditos.png");
-  berlin = createFont("godofwar.ttf",50);
-  for ( int i = 0; i < autode.length; i++ ) {
-    autode[i] = loadImage( "autode"+i+".png" );
+  kratos = createFont("godofwar.ttf",50);
+  for ( int i = 0; i < autoAbajo.length; i++ ) {
+    autoAbajo[i] = loadImage( "autode"+i+".png" );
   }
-  for ( int i = 0; i < autoiz.length; i++ ) {
-    autoiz[i] = loadImage( "autoiz"+i+".png" );
+  for ( int i = 0; i < autoArriba.length; i++ ) {
+    autoArriba[i] = loadImage( "autoiz"+i+".png" );
   }
-  for ( int i = 0; i < pez.length; i++ ) {
-    pez[i] = loadImage( "pez"+i+".png" );
+  for ( int i = 0; i < cofre.length; i++ ) {
+    cofre[i] = loadImage( "cofre"+i+".png" );
   }
 }
 
 void draw() {
+ 
   // INICIO
   if ( estado.equals("inicio") ) { 
     image (inicio, 0, 0,800,600);
@@ -53,7 +61,7 @@ void draw() {
   } else if ( estado.equals("instrucciones") ) {
     image (instrucciones, 0, 0); 
      fill(255,4,4);
-     textFont(berlin);
+     textFont(kratos);
      textSize(25);
      text("Ayuda a Luffy a volver con sus amigos.Para\n hacerlo evita los autos mientras cruces\n la calle y junta tesoros del lago para sumar \n mas puntos. ",110,200);
      
@@ -63,21 +71,21 @@ void draw() {
     image (fondo, 0, 0);
     autos();
     puntos(  600, 50, 30);
-    peces();
-    colision();
-    //PATO
-    image (luffy, PPatoX, PPatoY);
+    cofres();
+    choque();
+    //luffy
+    image (luffy, luffyX, luffyY);
   }
-  if ( estado.equals("juego") && PPatoY< 50 ) {
+  if ( estado.equals("juego") && luffyY< 50 ) {
     estado.equals("ganaste");
-    image (ganaste, 0, 0);
-    puntos(  450, 330, 50);
+    image (ganar, 0, 0);
+    puntos(  435, 330, 45);
   }
 
-  if ( estado.equals("perdiste")  ) {
+  if ( estado.equals("perder")  ) {
 
-    image (perdiste, 0, 0);
-    puntos(  450, 330, 50);
+    image (perder, 0, 0);
+    puntos(  250, 200, 40);
   }
 }
 
@@ -94,17 +102,17 @@ void mouseClicked() {
 }
 void keyPressed() {
   if (key =='w' ) {
-    PPatoY-= 50;
-    puntos+=5;
+    luffyY-= 50;
+    puntaje+=5;
   }
   if (key =='s' ) {
-    PPatoY += 50;
+    luffyY += 50;
   }
   if (key == 'a' ) {
-    PPatoX -= 50 ;
+    luffyX -= 50 ;
   }
   if (key == 'd' ) {
-    PPatoX += 50 ;
+    luffyX += 50 ;
   }
   if (key == 'r' ) {
     estado = "juego";
@@ -117,9 +125,9 @@ void keyPressed() {
   PAutoD= 550;
   PAutoD2= 800;
   PAutoD3= 1000;
-  PPatoX= 400;
-  PPatoY= 500;
-  puntos =0;
+  luffyX= 400;
+  luffyY= 500;
+  puntaje =0;
   }
   if (key == 't' ) {
     estado = "creditos";
